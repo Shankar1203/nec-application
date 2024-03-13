@@ -1,0 +1,33 @@
+@use '../../Styles';
+
+.toolsLoader {
+    width: 100%;
+    height: 7rem;
+    border-radius: 0.25rem;
+    margin-bottom: 2rem;
+    background-color: #eeeeee;
+    overflow: hidden;
+    position: relative;
+
+    div {
+        width: 20%;
+        height: 100%;
+        opacity: 50%;
+        background-color: #80808040;
+        box-shadow: 0 0 40px 30px #80808040;
+        position: absolute;
+        animation-name: toolSlide;
+        animation-duration: 2s;
+        animation-iteration-count: infinite;
+    }
+}
+
+@keyframes toolSlide {
+    from {
+        transform: translateX(-150%);
+    }
+
+    to {
+        transform: translateX(700%);
+    }
+}

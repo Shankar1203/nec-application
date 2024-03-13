@@ -1,0 +1,44 @@
+@use '../../../Styles';
+
+.dashboard {
+    display: flex;
+    gap: 8rem;
+
+    .dashboardOptions {
+        flex: 1;
+        gap: 10px;
+        height: 8rem;
+        border-radius: 1rem;
+        display: flex;
+        align-items: center;
+        padding-left: 1.5rem;
+
+        .iconTab {
+            width: 4rem;
+            height: 4rem;
+            border-radius: 50%;
+            display: grid;
+            place-items: center;
+        }
+
+        .textTab {
+            margin-left: 1rem;
+
+            p {
+                font-family: Styles.$poppins;
+                color: #4E4E4E;
+                font-weight: 400;
+                opacity: 0.8;
+            }
+
+            .fileNumber {
+                color: black;
+                font-size: 1.5rem;
+                font-weight: 600;
+                opacity: 1;
+                margin-top: 0.5rem;
+                font-family: Styles.$poppins;
+            }
+        }
+    }
+}

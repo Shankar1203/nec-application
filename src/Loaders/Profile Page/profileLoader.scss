@@ -1,0 +1,30 @@
+.profileLoader {
+    width: 23%;
+    height: 29rem;
+    background-color: #eeeeee;
+    position: relative;
+    overflow: hidden;
+    border-radius: 0.25rem;
+
+    div {
+        width: 20%;
+        height: 100%;
+        opacity: 50%;
+        background-color: #80808040;
+        box-shadow: 0 0 40px 30px #80808040;
+        position: absolute;
+        animation-name: profileslide;
+        animation-duration: 2s;
+        animation-iteration-count: infinite;
+    }
+}
+
+@keyframes profileslide {
+    from {
+        transform: translateX(-150px);
+    }
+
+    to {
+        transform: translateX(1500px);
+    }
+}

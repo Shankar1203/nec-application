@@ -1,0 +1,12 @@
+@use '../../Styles';
+
+.jobsTab {
+    width: 95%;
+    margin: 2.5rem auto 0;
+
+    h2{
+        margin-bottom: 1.5rem;
+        font-family: Styles.$outfit;
+        font-weight: 700;
+    }
+}

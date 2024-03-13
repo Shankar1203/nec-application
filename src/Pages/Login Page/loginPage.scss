@@ -1,0 +1,42 @@
+@use '../../Styles';
+
+.loginScreen {
+    display: flex;
+    width: 100%;
+    height: 100vh;
+    position: relative;
+
+    .loginImgArea {
+        width: 50%;
+        background-color: Styles.$black;
+        height: auto;
+        display: grid;
+        place-items: center;
+        position: relative;
+
+        img{
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            filter: brightness(40%);
+        }
+
+        h1 {
+            color: Styles.$foregroundWhite;
+            font-size: 76px;
+            font-weight: 700;
+            line-height: 114px;
+            position: absolute;
+            font-family: Styles.$outfit;
+        }
+    }
+
+    .loginFormArea {
+        width: 50%;
+        background-color: Styles.$foregroundWhite;
+        display: grid;
+        place-items: center;
+        height: 100%;
+    }
+
+}

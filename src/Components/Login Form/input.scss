@@ -1,0 +1,80 @@
+@use '../../Styles';
+
+.credentialsTab {
+    margin-top: 3rem;
+
+    div {
+        margin-top: 1.9rem;
+        width: 60%;
+    }
+
+    p {
+        font-family: Styles.$poppins;
+        font-size: 14px;
+        opacity: 0.54;
+        font-weight: 400;
+    }
+
+    .inputTag {
+        margin-top: 0.6rem;
+        position: relative;
+        width: 100%;
+    }
+
+    input {
+        width: 100%;
+        box-sizing: border-box;
+        height: 61px;
+        padding-left: 1.2rem;
+        outline: none;
+        border: 1.5px solid #80808050;
+        border-radius: 10px;
+        font-size: 1rem;
+        font-family: Styles.$poppins;
+        font-weight: 400;
+    }
+
+    ::-ms-input-placeholder {
+        font-size: 1rem;
+        opacity: 0.3033;
+    }
+
+    ::placeholder {
+        font-size: 1rem;
+        opacity: 0.3033;
+    }
+
+    .eyeIcon {
+        position: absolute;
+        font-size: 1.2rem;
+        top: 1.3rem;
+        right: 1rem;
+        cursor: pointer;
+    }
+
+    .passwordReset {
+        text-align: right;
+        margin-top: 1rem;
+        cursor: pointer;
+        color: Styles.$actionBlue;
+        opacity: 1;
+        font-family: Styles.$poppins;
+        font-weight: 300;
+    }
+
+    .errorText {
+        display: flex;
+        align-items: center;
+        width: 100%;
+        margin-top: 0.6rem;
+
+        .errorDescription {
+            color: Styles.$errorText;
+            font-size: 0.875rem;
+            font-weight: 300;
+            opacity: 1;
+            margin-left: 0.3rem;
+            font-family: Styles.$poppins;
+        }
+    }
+}

@@ -1,0 +1,42 @@
+@use '../../Styles';
+
+.qaPage {
+    width: 100%;
+    height: 100vh;
+    background-color: Styles.$backgroundGray;
+
+    .qaTemplate {
+        width: 100%;
+        height: 92.5%;
+        display: grid;
+        place-items: center;
+        box-sizing: border-box;
+
+        .workArea {
+            width: 90%;
+            height: 90%;
+            background-color: Styles.$foregroundWhite;
+            position: relative;
+
+            .qaHeading {
+                color: Styles.$black;
+                font-size: 1.5rem;
+                font-weight: 700;
+                font-family: Styles.$outfit;
+                width: 95%;
+                margin: 2rem auto 0;
+            }
+
+            .button{
+                float: right;
+                font-weight: 700;
+                position: absolute;
+                bottom: 2.6rem;
+                right: 2.6rem;
+                cursor: pointer;
+                user-select: none;
+            }
+        }
+    }
+
+}

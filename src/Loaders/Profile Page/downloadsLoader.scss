@@ -1,0 +1,29 @@
+.downloadsLoader {
+    width: 77%;
+    height: 39rem;
+    overflow: hidden;
+    background-color: #eeeeee;
+    position: relative;
+
+    div {
+        width: 20%;
+        height: 100%;
+        opacity: 50%;
+        background-color: #80808040;
+        box-shadow: 0 0 40px 30px #80808040;
+        position: absolute;
+        animation-name: downloadslide;
+        animation-duration: 2s;
+        animation-iteration-count: infinite;
+    }
+}
+
+@keyframes downloadslide {
+    from {
+        transform: translateX(-400px);
+    }
+
+    to {
+        transform: translateX(2000px);
+    }
+}

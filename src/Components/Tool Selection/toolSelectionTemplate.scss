@@ -1,0 +1,142 @@
+@use '../../Styles';
+
+.toolSelectionTab {
+    background-color: Styles.$foregroundWhite;
+    width: 95%;
+    height: 61%;
+    margin: 0 auto;
+
+    .toolSelectionHeader {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        .heading {
+            margin: 2rem 0;
+            font-size: 1.5rem;
+            font-weight: 700;
+            width: 100%;
+            font-family: Styles.$outfit;
+        }
+
+        .toolAccessBtn {
+            display: flex;
+            justify-content: space-evenly;
+            align-items: center;
+            width: 9rem;
+            height: 2.25rem;
+            border-radius: 0.25rem;
+            border: 1px solid Styles.$actionBlue;
+            cursor: pointer;
+            user-select: none;
+
+            p {
+                color: #0066EB;
+                font-size: 0.875rem;
+                font-weight: 700;
+            }
+        }
+    }
+
+
+    .visibleTools {
+        width: 100%;
+        height: 100%;
+
+        &::-webkit-scrollbar {
+            display: none;
+        }
+
+        & {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+
+        .toolContainer {
+            width: 100%;
+            height: 7rem;
+            background-color: Styles.$foregroundWhite;
+            border-radius: 0.25rem;
+            border: 1px solid Styles.$borderGray;
+            display: flex;
+            align-items: center;
+            padding: 0 1.5rem;
+            box-sizing: border-box;
+            cursor: pointer;
+            margin-bottom: 2rem;
+            position: relative;
+
+            .toolImage {
+                display: flex;
+                align-items: center;
+                margin: 0 1rem;
+
+                .toIcon {
+                    width: 2rem;
+                    margin: 0;
+                }
+
+                img {
+                    width: 3rem;
+                    margin: 0 1.2rem;
+                }
+            }
+
+            .checkbox {
+                width: 1.3rem;
+                height: 1.3rem;
+                border-radius: 50%;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+
+                .selectionIndicator {
+                    width: 80%;
+                    height: 80%;
+                    border-radius: 50%;
+                    background-color: Styles.$actionBlue;
+                }
+            }
+
+            .textArea {
+
+
+                h2 {
+                    color: Styles.$black;
+                    font-size: 1.5rem;
+                    font-style: normal;
+                    font-weight: 700;
+                    line-height: normal;
+                    margin-bottom: 0.56rem;
+                }
+
+                p {
+                    color: #6A6A6A;
+                    font-size: 1rem;
+                    font-style: normal;
+                    font-weight: 400;
+                    line-height: normal;
+                }
+            }
+
+            .deniedAccess {
+                display: flex;
+                align-items: center;
+                position: absolute;
+                right: 2rem;
+
+                p {
+                    color: #767676;
+                    font-size: 0.875rem;
+                }
+
+                img {
+                    margin-left: 0.5rem;
+                }
+            }
+
+        }
+
+    }
+
+}

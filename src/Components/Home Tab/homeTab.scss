@@ -1,0 +1,95 @@
+@use '../../Styles';
+
+.homeTab {
+    width: 90%;
+    background-color: Styles.$foregroundWhite;
+    height: 90%;
+    position: relative;
+
+    .homeTabHeader {
+        width: 95%;
+        height: 7rem;
+        margin: 0 auto;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+
+        h2 {
+            font-weight: 700;
+            font-family: Styles.$outfit;
+        }
+
+        a {
+            text-decoration: none;
+        }
+
+        .createJobBtn {
+            width: 9.125rem;
+            height: 2.75rem;
+            border-radius: 0.25rem;
+            background: Styles.$actionBlue;
+            box-shadow: 0px 8px 14px 0px rgba(0, 0, 0, 0.20);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+
+            p {
+                color: Styles.$foregroundWhite;
+                text-align: center;
+                font-size: 0.875rem;
+                font-weight: 600;
+                font-family: Styles.$poppins;
+            }
+
+            img {
+                margin-left: 1rem;
+            }
+        }
+    }
+
+    .homeTabBody {
+        width: 95%;
+        margin: 0 auto;
+    }
+
+    .ruler {
+        width: 95%;
+        margin: 4rem auto 0;
+        height: 0.1rem;
+        background-color: Styles.$borderGray;
+        opacity: 0.6;
+        // border: none;
+    }
+
+    .pages {
+        position: absolute;
+        bottom: 1.5rem;
+        right: 2.6rem;
+        width: 11rem;
+        height: 2rem;
+        border-radius: 0.25rem;
+        display: flex;
+        justify-content: right;
+
+        .pageNo {
+            width: 2.25rem;
+            height: 100%;
+            display: grid;
+            place-items: center;
+            border: 0.5px solid #E8E8E8;
+            background: Styles.$foregroundWhite;
+            cursor: pointer;
+            color: #4A90E2;
+            font-family: Styles.$poppins;
+            font-weight: 400;
+        }
+
+        .active {
+            color: Styles.$black;
+            font-family: Styles.$inter;
+            font-weight: 700;
+        }
+    }
+
+}

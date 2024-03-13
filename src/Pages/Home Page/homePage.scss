@@ -1,0 +1,93 @@
+@use '../../Styles';
+
+
+.jobsListPage{
+    width: 100%;
+    height: 100vh;
+    background-color: Styles.$backgroundGray;
+    padding-bottom: 2rem;
+    box-sizing: border-box;
+
+    .jobsTemplate{
+        display: grid;
+        place-items: center;
+        width: 100%;
+        height: 95.8%;
+        box-sizing: border-box;
+    }
+
+}
+
+.deleteConfirmation {
+    width: 45.75rem;
+    height: 14.125rem;
+    border-radius: 0.625rem;
+    background: Styles.$foregroundWhite;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0);
+    padding: 2rem 1.5rem;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    transition: 0.1s;
+
+    .confirmHeading {
+        color: Styles.$black;
+        font-size: 1.5rem;
+        font-weight: 700;
+        font-family: Styles.$outfit;
+    }
+
+    .confirmDescription {
+        color: #52525B;
+        font-size: 1.2rem;
+        font-weight: 400;
+        line-height: 1.6875rem;
+        font-family: Styles.$poppins;
+    }
+
+    .confirmButtons {
+        width: 100%;
+        height: 2.75rem;
+        display: flex;
+        gap: 20px;
+        align-items: center;
+        justify-content: end;
+
+        .cancelBtn,
+        .deleteBtn {
+            width: 9.875rem;
+            height: 100%;
+            display: grid;
+            place-items: center;
+            cursor: pointer;
+        }
+
+        .cancelBtn {
+            border: 1px solid #9A9A9A;
+            background: Styles.$foregroundWhite;
+            border-radius: 0.625rem;
+
+            p {
+                color: Styles.$black;
+                font-size: 1rem;
+                font-weight: 400;
+            }
+        }
+
+        .deleteBtn {
+            border-radius: 0.25rem;
+            background: #DA0E0E;
+
+            p {
+                color: Styles.$foregroundWhite;
+                font-size: 1rem;
+                font-weight: 700;
+            }
+        }
+
+    }
+}

@@ -1,0 +1,17 @@
+@use '../../Styles';
+
+.button {
+    padding: 0.8rem 2rem;
+    border-radius: 0.25rem;
+    outline: none;
+    border: none;
+    cursor: pointer;
+    margin: 0 0 0 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: fit-content;
+    width: fit-content;
+    font-family: Styles.$poppins;
+    font-weight: 500;
+}

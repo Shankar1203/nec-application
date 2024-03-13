@@ -1,0 +1,114 @@
+@use '../../Styles';
+
+.loginForm {
+    width: 80%;
+
+    // .logo {
+    //     width: 7rem;
+    //     height: 7rem;
+    // }
+
+    .welcomeText {
+
+
+        h1 {
+            font-size: 46px;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            font-family: Styles.$poppins;
+        }
+
+        .loginText {
+            width: 60%;
+            color: #52525B;
+            font-size: 1.125rem;
+            font-weight: 300;
+            line-height: 1.875rem;
+            font-family: Styles.$poppins;
+        }
+    }
+
+    .invalidCredentialsPopup {
+        width: 60%;
+        height: 10rem;
+        background-color: #EB5757;
+        height: 5.0625rem;
+        border-radius: 0.375rem;
+        display: flex;
+        align-items: center;
+        position: relative;
+        top: 1.4rem;
+        
+        img{
+            margin: 0 1rem;
+            position: relative;
+            bottom: 0.58rem;
+        }
+
+        .toastTextArea {
+
+
+            .toastHeading {
+                color: Styles.$foregroundWhite;
+                font-weight: 600;
+                line-height: 1.5rem;
+                font-size: 1rem;
+                font-family: Styles.$poppins;
+            }
+
+            p {
+                color:#FFE8E8;
+                font-size: 0.875rem;
+                font-weight: 300;
+                line-height: 1.3125rem;
+                font-family: Styles.$poppins;
+            }
+        }
+
+        .toastClose{
+            position: absolute;
+            right: 0;
+            top: 1.25rem;
+            cursor: pointer;
+        }
+    }
+
+
+    button {
+        width: 60%;
+        height: 55px;
+        border-radius: 8px;
+        border: 0px;
+        background-color: Styles.$actionBlue;
+        color: Styles.$foregroundWhite;
+        font-size: 16px;
+        font-weight: 600;
+        font-family: Styles.$poppins;
+        line-height: normal;
+        margin-top: 1.5rem;
+        cursor: pointer;
+    }
+
+    .pageSwitch {
+        width: 60%;
+        margin-top: 1.5rem;
+
+        .infoText {
+            opacity: 50%;
+            font-family: Styles.$poppins;
+            font-weight: 400;
+        }
+
+        .nextPage {
+            color: Styles.$actionBlue;
+            margin-left: 0.7rem;
+            cursor: pointer;
+            font-weight: 500;
+            font-family: Styles.$poppins;
+
+            &:hover{
+                text-decoration:underline;
+            }
+        }
+    }
+}

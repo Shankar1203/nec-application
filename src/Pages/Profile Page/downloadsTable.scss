@@ -1,0 +1,29 @@
+.downloadsTableContainer {
+    width: 95%;
+    height: 53vh;
+    margin: 1.7rem auto 0;
+    overflow-y: scroll;
+
+    &::-webkit-scrollbar {
+        display: none;
+    }
+
+    .fileNameColumn {
+        width: 50%;
+    }
+
+    .fileSizeColumn {
+        width: 30%;
+    }
+
+    .downloadedOnColumn {
+        width: 20%;
+    }
+
+    td {
+        color: #222;
+        font-size: 0.8125rem;
+        font-weight: 500;
+        opacity: 0.7;
+    }
+}
