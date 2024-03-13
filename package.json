@@ -1,7 +1,11 @@
 {
   "name": "nec-application",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "private": true,
+  "main": "public/electron.js",
+  "homepage": "./",
+  "description": "EternaStnc desktop application",
+  "productName": "EternaSync",
   "dependencies": {
     "@testing-library/jest-dom": "^5.17.0",
     "@testing-library/react": "^13.4.0",
@@ -22,7 +26,9 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "electron": "electron .",
+    "dist": "electron-builder"
   },
   "eslintConfig": {
     "extends": [
@@ -41,5 +47,16 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "build": {
+    "appId": "com.example.myapp",
+    "directories": {
+      "output": "dist"
+    }
+  },
+  "devDependencies": {
+    "electron": "^29.1.2",
+    "electron-builder": "^24.13.3",
+    "electron-is-dev": "^3.0.1"
   }
 }
