@@ -14,8 +14,8 @@ const HomeTab = ({ setDeletePopup, setToBeDeleted, isDeleted }) => {
 
     const navigate = useNavigate();
 
-    const [jobs, setJobs] = useState();
-    const [successJobs, setSuccessJobs] = useState();
+    const [jobs, setJobs] = useState(0);
+    const [successJobs, setSuccessJobs] = useState(0);
     const [failedJobs, setFailedJobs] = useState(0);
     const [page, setPage] = useState(1);
     const [maxPages, setMaxPages] = useState(0);
@@ -46,9 +46,16 @@ const HomeTab = ({ setDeletePopup, setToBeDeleted, isDeleted }) => {
                     console.log(res);
                     if (res?.status === 200) {
                         setMaxPages(res.data.content.totalPages)
+
+                        if(page>1 && res.data.content.tasks.length===0){
+                            setPage(prev=>prev-1);
+                        }
+
                         setJobs(res.data.content.totalTasks)
-                        setSuccessJobs(res.data.content.totalTasks)
+                        setSuccessJobs(res.data.content.successful_tasks)
+                        setFailedJobs(res.data.content.failed_tasks)
                         setTasks(res.data.content.tasks)
+
                     }
                 }).catch((error) => {
                     if (error?.response?.status === 401) {
@@ -86,7 +93,7 @@ const HomeTab = ({ setDeletePopup, setToBeDeleted, isDeleted }) => {
 
             <div className='homeTabBody'>
                 { loading ? <CounterLoader/> :
-                    <Dashboard jobs={jobs} setJobs={setJobs} successJobs={successJobs} setSuccessJobs={setSuccessJobs} failedJobs={failedJobs} setFailedJobs={setFailedJobs} />}
+                    <Dashboard jobs={jobs} successJobs={successJobs} failedJobs={failedJobs}/>}
             </div>
 
             <div className='ruler'></div>

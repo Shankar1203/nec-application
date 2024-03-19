@@ -5,7 +5,7 @@ import path from '../../Assets/Images/Path.svg';
 import ToolSelectionArea from '../../Components/Tool Selection/ToolSelectionArea';
 import ToolDetailsArea from '../../Components/Tool Details/ToolDetailsArea';
 import httpClient from '../../httpClient';
-import LoadingPage from '../../Components/Loading Page/LoadingPage';
+import LoadingPage from '../Loading Page/LoadingPage';
 import { Link } from 'react-router-dom';
 import { io } from 'socket.io-client';
 import refreshTokenHandling from '../../Api/refreshToken';
@@ -29,122 +29,123 @@ const NewJobPage = () => {
     const [splash, setSplash] = useState(true);
     const [toolAccessPopup, setToolAccessPopup] = useState(false);
 
-    const [t2pProgress, setT2pProgress] = useState({
-        ExtractingData: 'inprogress',
-        ExtractingDataSource: 'waiting',
-        GeneratingManualGuide: 'waiting',
-        ExtractingCalculatedFields: 'waiting',
-        DataUploadingToPowerBiService: 'waiting',
-        CreatingReport: 'waiting',
-        SavingReport: 'waiting'
-    });
+    const [incomingStatus, setIncomingStatus] = useState([]);
 
-    const [t2mProgress, setT2mProgress] = useState({
-        ExtractingData: 'inprogress',
-        DatabaseAdded: 'waiting',
-        DatabaseImported: 'waiting',
-        CardsCreated: 'waiting',
-        MigrationCompleted: 'waiting'
-    })
+    const progressTracker = (data) => {
 
-    const t2pProgressTracker = (process) => {
-        switch (process) {
-            case 'File Extracted':
-                setT2pProgress((prev) => {
-                    return { ...prev, ExtractingData: 'complete', ExtractingDataSource: 'inprogress' }
-                })
-                break;
-            case 'Data Source Extracted':
-                setT2pProgress((prev) => {
-                    return { ...prev, ExtractingDataSource: 'complete', GeneratingManualGuide: 'inprogress' }
-                })
-                break;
-            case 'Manual Generated':
-                setT2pProgress((prev) => {
-                    return { ...prev, GeneratingManualGuide: 'complete', ExtractingCalculatedFields: 'inprogress' }
-                })
-                break;
-            case 'Calculated Fields Generated':
-                setT2pProgress((prev) => {
-                    return { ...prev, ExtractingCalculatedFields: 'complete', DataUploadingToPowerBiService: 'inprogress' }
-                })
-                break;
-            case 'Data uploading to PowerBI service':
-                setT2pProgress((prev) => {
-                    return { ...prev, DataUploadingToPowerBiService: 'complete', CreatingReport: 'inprogress' }
-                })
-                break;
-            case 'Creating Report':
-                setT2pProgress((prev) => {
-                    return { ...prev, CreatingReport: 'complete', SavingReport: 'inprogress' }
-                })
-                break;
-            case 'Saving Report':
-                setT2pProgress((prev) => {
-                    return { ...prev, SavingReport: 'complete' }
-                })
-                break;
-            // case 'failed':
-            default:
-                setT2pProgress((prev) => {
-                    const updatedProgress = {};
-                    for (const key in prev) {
-                        if (prev[key] === 'inprogress') {
-                            updatedProgress[key] = 'failed';
-                        } else {
-                            updatedProgress[key] = prev[key];
-                        }
-                    }
-                    return updatedProgress;
-                });
-                break;
-        }
+        setIncomingStatus((prev) => {
+            const updatedProgress = {};
+            for (const key in prev) {
+                if (prev[key] === 'inprogress') {
+                    updatedProgress[key] = 'complete';
+                } else {
+                    updatedProgress[key] = prev[key];
+                }
+            }
+            updatedProgress[data] = 'inprogress';
+            return updatedProgress;
+        });
+
     }
 
-    const t2mProgressTracker = (process) => {
+    // const t2pProgressTracker = (process) => {
+    //     switch (process) {
+    //         case 'File Extracted':
+    //             setT2pProgress((prev) => {
+    //                 return { ...prev, ExtractingData: 'complete', ExtractingDataSource: 'inprogress' }
+    //             })
+    //             break;
+    //         case 'Data Source Extracted':
+    //             setT2pProgress((prev) => {
+    //                 return { ...prev, ExtractingDataSource: 'complete', GeneratingManualGuide: 'inprogress' }
+    //             })
+    //             break;
+    //         case 'Manual Generated':
+    //             setT2pProgress((prev) => {
+    //                 return { ...prev, GeneratingManualGuide: 'complete', ExtractingCalculatedFields: 'inprogress' }
+    //             })
+    //             break;
+    //         case 'Calculated Fields Generated':
+    //             setT2pProgress((prev) => {
+    //                 return { ...prev, ExtractingCalculatedFields: 'complete', DataUploadingToPowerBiService: 'inprogress' }
+    //             })
+    //             break;
+    //         case 'Data uploading to PowerBI service':
+    //             setT2pProgress((prev) => {
+    //                 return { ...prev, DataUploadingToPowerBiService: 'complete', CreatingReport: 'inprogress' }
+    //             })
+    //             break;
+    //         case 'Creating Report':
+    //             setT2pProgress((prev) => {
+    //                 return { ...prev, CreatingReport: 'complete', SavingReport: 'inprogress' }
+    //             })
+    //             break;
+    //         case 'Saving Report':
+    //             setT2pProgress((prev) => {
+    //                 return { ...prev, SavingReport: 'complete' }
+    //             })
+    //             break;
+    //         // case 'failed':
+    //         default:
+    //             setT2pProgress((prev) => {
+    //                 const updatedProgress = {};
+    //                 for (const key in prev) {
+    //                     if (prev[key] === 'inprogress') {
+    //                         updatedProgress[key] = 'failed';
+    //                     } else {
+    //                         updatedProgress[key] = prev[key];
+    //                     }
+    //                 }
+    //                 return updatedProgress;
+    //             });
+    //             break;
+    //     }
+    // }
 
-        switch (process) {
-            case 'File Extracted':
-                setT2mProgress((prev) => {
-                    return { ...prev, ExtractingData: 'complete', DatabaseAdded: 'inprogress' }
-                })
-                break;
-            case 'Database added':
-                setT2mProgress((prev) => {
-                    return { ...prev, DatabaseAdded: 'complete', DatabaseImported: 'inprogress' }
-                })
-                break;
-            case 'Database imported':
-                setT2mProgress((prev) => {
-                    return { ...prev, DatabaseImported: 'complete', CardsCreated: 'inprogress' }
-                })
-                break;
-            case 'Cards created':
-                setT2mProgress((prev) => {
-                    return { ...prev, CardsCreated: 'complete', MigrationCompleted: 'inprogress' }
-                })
-                break;
-            case 'Migration completed':
-                setT2mProgress((prev) => {
-                    return { ...prev, MigrationCompleted: 'complete' }
-                })
-                break;
-            // case 'failed':
-            default:
-                setT2mProgress((prev) => {
-                    const updatedProgress = {};
-                    for (const key in prev) {
-                        if (prev[key] === 'inprogress') {
-                            updatedProgress[key] = 'failed';
-                        } else {
-                            updatedProgress[key] = prev[key];
-                        }
-                    }
-                    return updatedProgress;
-                });
-                break;
-        }
-    }
+    // const t2mProgressTracker = (process) => {
+
+    //     switch (process) {
+    //         case 'File Extracted':
+    //             setT2mProgress((prev) => {
+    //                 return { ...prev, ExtractingData: 'complete', DatabaseAdded: 'inprogress' }
+    //             })
+    //             break;
+    //         case 'Database added':
+    //             setT2mProgress((prev) => {
+    //                 return { ...prev, DatabaseAdded: 'complete', DatabaseImported: 'inprogress' }
+    //             })
+    //             break;
+    //         case 'Database imported':
+    //             setT2mProgress((prev) => {
+    //                 return { ...prev, DatabaseImported: 'complete', CardsCreated: 'inprogress' }
+    //             })
+    //             break;
+    //         case 'Cards created':
+    //             setT2mProgress((prev) => {
+    //                 return { ...prev, CardsCreated: 'complete', MigrationCompleted: 'inprogress' }
+    //             })
+    //             break;
+    //         case 'Migration completed':
+    //             setT2mProgress((prev) => {
+    //                 return { ...prev, MigrationCompleted: 'complete' }
+    //             })
+    //             break;
+    //         // case 'failed':
+    //         default:
+    //             setT2mProgress((prev) => {
+    //                 const updatedProgress = {};
+    //                 for (const key in prev) {
+    //                     if (prev[key] === 'inprogress') {
+    //                         updatedProgress[key] = 'failed';
+    //                     } else {
+    //                         updatedProgress[key] = prev[key];
+    //                     }
+    //                 }
+    //                 return updatedProgress;
+    //             });
+    //             break;
+    //     }
+    // }
 
     const [options, setOptions] = useState({
         'Tableau to Power BI': true,
@@ -157,15 +158,15 @@ const NewJobPage = () => {
         return { name: key, value: value };
     });
 
-    const toolChecker = (data) => {
+    // const toolChecker = (data) => {
 
-        if (tool === 'Tableau to Power BI') {
-            t2pProgressTracker(data);
-        } else {
-            t2mProgressTracker(data);
-        }
+    //     if (tool === 'Tableau to Power BI') {
+    //         t2pProgressTracker(data);
+    //     } else {
+    //         t2mProgressTracker(data);
+    //     }
 
-    }
+    // }
 
     useEffect(() => {
         const initializeSocket = async () => {
@@ -175,7 +176,7 @@ const NewJobPage = () => {
                 newSocket.emit('join', { username: sessionStorage.getItem('username') });
                 newSocket.on('message', (data) => {
                     console.log(data);
-                    toolChecker(data);
+                    progressTracker(data);
                 });
             });
 
@@ -257,6 +258,17 @@ const NewJobPage = () => {
                 },
             }).then((res) => {
                 if (res?.status === 200) {
+                    setIncomingStatus((prev) => {
+                        const updatedProgress = {};
+                        for (const key in prev) {
+                            if (prev[key] === 'inprogress') {
+                                updatedProgress[key] = 'complete';
+                            } else {
+                                updatedProgress[key] = prev[key];
+                            }
+                        }
+                        return updatedProgress;
+                    });
                     setStatus('success');
                     Notification.requestPermission().then((result) => {
                         new Notification('Migration Completed successfully', {
@@ -269,12 +281,34 @@ const NewJobPage = () => {
                     refreshtoken(e, 't2p');
                 }
                 else {
-                    t2pProgressTracker('failed');
+                    setIncomingStatus((prev) => {
+                        const updatedProgress = {};
+                        for (const key in prev) {
+                            if (prev[key] === 'inprogress') {
+                                updatedProgress[key] = 'failed';
+                            } else {
+                                updatedProgress[key] = prev[key];
+                            }
+                        }
+                        return updatedProgress;
+                    });
+
                     setStatus('fail')
                 }
             })
 
         } catch (error) {
+            setIncomingStatus((prev) => {
+                const updatedProgress = {};
+                for (const key in prev) {
+                    if (prev[key] === 'inprogress') {
+                        updatedProgress[key] = 'failed';
+                    } else {
+                        updatedProgress[key] = prev[key];
+                    }
+                }
+                return updatedProgress;
+            });
             setStatus('fail');
             console.error('Error:', error);
         }
@@ -296,6 +330,18 @@ const NewJobPage = () => {
                 },
             }).then((res) => {
                 if (res.status === 200) {
+                    setIncomingStatus((prev) => {
+                        const updatedProgress = {};
+                        for (const key in prev) {
+                            if (prev[key] === 'inprogress') {
+                                updatedProgress[key] = 'complete';
+                            } else {
+                                updatedProgress[key] = prev[key];
+                            }
+                        }
+                        return updatedProgress;
+                    });
+                    
                     setStatus('success');
 
                     Notification.requestPermission().then((result) => {
@@ -308,11 +354,34 @@ const NewJobPage = () => {
                 if (error?.response?.status === 401) {
                     refreshtoken(e, 't2mb');
                 } else {
+                    setIncomingStatus((prev) => {
+                        const updatedProgress = {};
+                        for (const key in prev) {
+                            if (prev[key] === 'inprogress') {
+                                updatedProgress[key] = 'failed';
+                            } else {
+                                updatedProgress[key] = prev[key];
+                            }
+                        }
+                        return updatedProgress;
+                    });
+                    setStatus('fail');
                     console.log(error);
                 }
             })
 
         } catch (error) {
+            setIncomingStatus((prev) => {
+                const updatedProgress = {};
+                for (const key in prev) {
+                    if (prev[key] === 'inprogress') {
+                        updatedProgress[key] = 'failed';
+                    } else {
+                        updatedProgress[key] = prev[key];
+                    }
+                }
+                return updatedProgress;
+            });
             setStatus('fail');
             console.error('Error:', error);
         }
@@ -355,7 +424,7 @@ const NewJobPage = () => {
 
                     {page === 'toolSelect' && <ToolSelectionArea setToolAccessPopup={setToolAccessPopup} tool={tool} setTool={setTool} createDate={createDate} setPage={setPage} />}
                     {page === 'toolDetails' && <ToolDetailsArea tool={tool} createDate={createDate} taskName={taskName} setTaskName={setTaskName} file={file} setFile={setFile} setPage={setPage} T2Pmigration={T2Pmigration} T2MBmigration={T2MBmigration} />}
-                    {page === 'loading' && <LoadingPage createDate={createDate} t2pProgress={t2pProgress} t2mProgress={t2mProgress} tool={tool} status={status} setPage={setPage} />}
+                    {page === 'loading' && <LoadingPage createDate={createDate} incomingStatus={incomingStatus} status={status} setPage={setPage} />}
 
                 </div>
 

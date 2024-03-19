@@ -82,6 +82,7 @@ const JobsTable = ({ tasks, setDeletePopup, setToBeDeleted }) => {
               <th className='toolColumn'>Tool Used</th>
               <th className='sTimeColumn'>Start Time</th>
               <th className='eTimeColumn'>End Time</th>
+              <th className='statusColumn'>Status</th>
               <th className='actionsColumn'>Actions</th>
             </tr>
           </thead>
@@ -92,15 +93,19 @@ const JobsTable = ({ tasks, setDeletePopup, setToBeDeleted }) => {
                 <td>{item.toolName}</td>
                 <td>{item.startTime}</td>
                 <td>{item.endTime}</td>
+                <td>{item.status === 'success' ? <div className='completeStatus'>Completed</div> : <div className='errorStatus'>Error</div>}</td>
                 <td className='actionsCol'>
-                  {
-                    item.toolName === 'T2M' ? <a href='http://192.168.0.11:3000' target='blank' className='redirect'>Redirect</a> :
+
+                    <div className='interactCol'>
+                      {item.status==='success' && (item.toolName === 'T2M' ? <a href='http://192.168.0.11:3000' target='blank' className='redirect'>Redirect</a> :
                       <div className='downloadBtn' onClick={() => { initiateDownload(item.taskName) }}>
                         <p>Download</p>
                         <img src={download} alt="download" />
-                      </div>
-                  }
-                  <img src={deleteIcon} alt="delete" className='deleteIcon' onClick={() => { setDeletePopup(true); setToBeDeleted(item.taskName) }} />
+                      </div>)}
+                    </div>
+
+                  <div className='deleteCol'><img src={deleteIcon} alt="delete" className='deleteIcon' onClick={() => { setDeletePopup(true); setToBeDeleted(item.taskName) }} /></div>
+
                 </td>
               </tr>
             ))}

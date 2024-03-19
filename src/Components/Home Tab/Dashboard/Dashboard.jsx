@@ -2,13 +2,12 @@ import React, { useState } from 'react'
 import dashboardOptions from './dashboardOptions';
 import './dashboard.scss'
 
-const Dashboard = ({jobs, setJobs, successJobs, setSuccessJobs, failedJobs, setFailedJobs}) => {
+const Dashboard = ({jobs, successJobs, failedJobs}) => {
 
     const stateMapping = {
         'jobs': jobs,
         'successJobs': successJobs,
         'failedJobs': failedJobs,
-        // Add more mappings as needed based on your dashboardOptions
       };
 
     return (
