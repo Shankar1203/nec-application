@@ -2,13 +2,8 @@ const { app, BrowserWindow } = require('electron');
 const path = require('path');
 
 async function createWindow() {
-
-    const isDevModule = await import('electron-is-dev');
-    const isDev = isDevModule.default;
     
-    const startURL = isDev
-    ? 'http://localhost:3000'
-    : `file://${path.join(__dirname, '../build/index.html')}`;
+    const startURL = 'http://localhost:3000'
 
     const win = new BrowserWindow({
         width: 1500,

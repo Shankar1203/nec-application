@@ -49,10 +49,7 @@
     ]
   },
   "build": {
-    "appId": "com.example.myapp",
-    "directories": {
-      "output": "dist"
-    }
+    "appId": "com.example.myapp"
   },
   "devDependencies": {
     "electron": "^29.1.2",
