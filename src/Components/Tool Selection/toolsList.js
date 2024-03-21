@@ -23,17 +23,18 @@ const toolsList = [
     {
         id: 3,
         from: ibm,
-        to: informatica,
-        name: "IBM Datastage to Informatica Powercenter",
-        description: "Use IBM Datastage to Informatica Powercenter tool to initiate migration."
+        to: glue,
+        name: "IBM Datastage to Glue",
+        description: "Use IBM Datastage to Glue tool to initiate migration."
     },
     {
         id: 4,
         from: ibm,
-        to: glue,
-        name: "IBM Datastage to Glue",
-        description: "Use IBM Datastage to Glue tool to initiate migration."
-    }
+        to: informatica,
+        name: "IBM Datastage to Informatica Powercenter",
+        description: "Use IBM Datastage to Informatica Powercenter tool to initiate migration."
+    },
+    
 ]
 
 export default toolsList

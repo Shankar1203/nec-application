@@ -84,7 +84,7 @@ const HomeTab = ({ setDeletePopup, setToBeDeleted, isDeleted }) => {
 
                 <h2>Dashboard</h2>
 
-                <Link to='/home/newjob'><div className='createJobBtn'>
+                <Link to='/newjob'><div className='createJobBtn'>
                     <p>Create Job</p>
                     <img src={createNew} alt="Create New" />
                 </div></Link>

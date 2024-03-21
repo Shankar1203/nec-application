@@ -7,7 +7,7 @@ import toolAccess from '../../Assets/Images/Tool Access.svg'
 import ToolSelectionLoader from '../../Loaders/Tool Selection Area/ToolSelectionLoader'
 
 
-const ToolSelectionTemplate = ({ availableTools, loading, setToolAccessPopup, role, tool, setTool }) => {
+const ToolSelectionTemplate = ({ availableTools, loading, setToolAccessPopup, tool, setTool }) => {
 
   return (
     <div className='toolSelectionTab'>

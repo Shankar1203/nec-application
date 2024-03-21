@@ -8,7 +8,7 @@ import httpClient from '../../httpClient';
 import refreshTokenHandling from '../../Api/refreshToken';
 import { useNavigate } from 'react-router-dom';
 
-const ToolSelectionArea = ({ setToolAccessPopup, role, tool, setTool, createDate, setPage }) => {
+const ToolSelectionArea = ({ setToolAccessPopup, tool, setTool, createDate, setPage }) => {
 
     const navigate = useNavigate();
     const [loading, setLoading] = useState(true);
@@ -25,6 +25,7 @@ const ToolSelectionArea = ({ setToolAccessPopup, role, tool, setTool, createDate
                 }
             }).then((res) => {
                 if (res?.status === 200) {
+                    console.log(res.data);
                     setAvailableTools(res?.data?.content);
                 }
             }).catch(error => {
@@ -54,7 +55,7 @@ const ToolSelectionArea = ({ setToolAccessPopup, role, tool, setTool, createDate
     return (
         <div className='actionArea'>
             <ProgressionBar level={1} />
-            <ToolSelectionTemplate loading={loading} availableTools={availableTools} setToolAccessPopup={setToolAccessPopup} role={role} tool={tool} setTool={setTool} />
+            <ToolSelectionTemplate loading={loading} availableTools={availableTools} setToolAccessPopup={setToolAccessPopup} tool={tool} setTool={setTool} />
 
             <div className='actionButtons'>
                 <p>Started creating on: {createDate}</p>

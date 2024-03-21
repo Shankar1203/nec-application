@@ -1,11 +1,11 @@
 import React from 'react'
-import ProgressionBar from '../../Components/Progression Bar/ProgressionBar'
-import Button from '../../Components/Button/Button'
+import ProgressionBar from '../Progression Bar/ProgressionBar';
+import Button from '../Button/Button';
 import { Link } from 'react-router-dom';
 import './loadingPage.scss'
-import StatusBar from '../../Components/Status Bar/StatusBar';
+import StatusBar from '../Status Bar/StatusBar'
 
-const LoadingPage = ({ createDate, incomingStatus, status, setPage }) => {
+const LoadingPage = ({ createDate, incomingStatus, status}) => {
 
     return (
         <div className='actionArea'>

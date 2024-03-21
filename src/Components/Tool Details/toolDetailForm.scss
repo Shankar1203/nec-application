@@ -26,6 +26,7 @@
         height: 3.8125rem;
         border-radius: 0.625rem;
         margin-top: 0.5rem;
+        box-sizing: border-box;
     }
 
     .nameInput {
@@ -151,5 +152,70 @@
         font-weight: 400;
     }
 
+}
 
+
+.databaseOption {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 2.5rem;
+
+    .label {
+        font-size: 0.875rem;
+        font-weight: 400;
+        opacity: 0.54;
+        font-family: Styles.$poppins;
+    }
+
+    .nameInput {
+        width: 34.625rem;
+        height: 3.8125rem;
+        border-radius: 0.625rem;
+        margin-top: 0.5rem;
+        border: 1px solid #D4D3D6;
+        outline: none;
+        font-size: 1rem;
+        padding: 0 1.5rem;
+        box-sizing: border-box;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        cursor: pointer;
+        user-select: none;
+
+        img{
+            filter: brightness(0);
+            transition: 0.2s;
+        }
+    }
+
+    .dropdown{
+        width: 34.625rem;
+        max-height: 7.5rem;
+        overflow-y: scroll;
+        border-radius: 0.625rem;
+        box-shadow: 1px 1px 10px Styles.$borderGray;
+        transition: 0.2s;
+
+        p{
+            width: 100%;
+            height: 2.9rem;
+            padding: 0 1rem;
+            display: flex;
+            align-items: center;
+            box-sizing: border-box;
+            border-bottom: 1px solid #80808020;
+            cursor: pointer;
+
+            &:hover{
+                background: #80808020;
+            }
+        }
+    }
+}
+
+
+.databaseOptionDivider{
+    margin-top: 2.5rem;
+    opacity: 20%;
 }

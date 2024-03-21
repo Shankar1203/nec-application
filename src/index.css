@@ -1,5 +1,14 @@
-*{
+* {
     padding: 0px;
     margin: 0px;
     font-family: sans-serif;
+}
+
+*::-webkit-scrollbar {
+    display: none;
+}
+
+* {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
 }

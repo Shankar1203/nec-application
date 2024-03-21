@@ -5,7 +5,7 @@ import path from '../../Assets/Images/Path.svg';
 import ToolSelectionArea from '../../Components/Tool Selection/ToolSelectionArea';
 import ToolDetailsArea from '../../Components/Tool Details/ToolDetailsArea';
 import httpClient from '../../httpClient';
-import LoadingPage from '../Loading Page/LoadingPage';
+import LoadingPage from '../../Components/Loading Page/LoadingPage';
 import { Link } from 'react-router-dom';
 import { io } from 'socket.io-client';
 import refreshTokenHandling from '../../Api/refreshToken';
@@ -14,6 +14,7 @@ import SplashScreen from '../../Loaders/Splash Screen/SplashScreen';
 import toolsList from '../../Components/Tool Selection/toolsList';
 import close from '../../Assets/Images/Tool Access Close.svg';
 import { ip } from '../../Api/ip';
+import ConnectionPage from '../../Components/Connection Page/ConnectionPage';
 
 const NewJobPage = () => {
 
@@ -28,8 +29,14 @@ const NewJobPage = () => {
     const [tool, setTool] = useState('Tableau to Power BI');
     const [splash, setSplash] = useState(true);
     const [toolAccessPopup, setToolAccessPopup] = useState(false);
+    
 
     const [incomingStatus, setIncomingStatus] = useState([]);
+
+    const [glueDatabases, setGlueDatabases] = useState({
+        database1: '',
+        database2: ''
+    });
 
     const progressTracker = (data) => {
 
@@ -48,105 +55,6 @@ const NewJobPage = () => {
 
     }
 
-    // const t2pProgressTracker = (process) => {
-    //     switch (process) {
-    //         case 'File Extracted':
-    //             setT2pProgress((prev) => {
-    //                 return { ...prev, ExtractingData: 'complete', ExtractingDataSource: 'inprogress' }
-    //             })
-    //             break;
-    //         case 'Data Source Extracted':
-    //             setT2pProgress((prev) => {
-    //                 return { ...prev, ExtractingDataSource: 'complete', GeneratingManualGuide: 'inprogress' }
-    //             })
-    //             break;
-    //         case 'Manual Generated':
-    //             setT2pProgress((prev) => {
-    //                 return { ...prev, GeneratingManualGuide: 'complete', ExtractingCalculatedFields: 'inprogress' }
-    //             })
-    //             break;
-    //         case 'Calculated Fields Generated':
-    //             setT2pProgress((prev) => {
-    //                 return { ...prev, ExtractingCalculatedFields: 'complete', DataUploadingToPowerBiService: 'inprogress' }
-    //             })
-    //             break;
-    //         case 'Data uploading to PowerBI service':
-    //             setT2pProgress((prev) => {
-    //                 return { ...prev, DataUploadingToPowerBiService: 'complete', CreatingReport: 'inprogress' }
-    //             })
-    //             break;
-    //         case 'Creating Report':
-    //             setT2pProgress((prev) => {
-    //                 return { ...prev, CreatingReport: 'complete', SavingReport: 'inprogress' }
-    //             })
-    //             break;
-    //         case 'Saving Report':
-    //             setT2pProgress((prev) => {
-    //                 return { ...prev, SavingReport: 'complete' }
-    //             })
-    //             break;
-    //         // case 'failed':
-    //         default:
-    //             setT2pProgress((prev) => {
-    //                 const updatedProgress = {};
-    //                 for (const key in prev) {
-    //                     if (prev[key] === 'inprogress') {
-    //                         updatedProgress[key] = 'failed';
-    //                     } else {
-    //                         updatedProgress[key] = prev[key];
-    //                     }
-    //                 }
-    //                 return updatedProgress;
-    //             });
-    //             break;
-    //     }
-    // }
-
-    // const t2mProgressTracker = (process) => {
-
-    //     switch (process) {
-    //         case 'File Extracted':
-    //             setT2mProgress((prev) => {
-    //                 return { ...prev, ExtractingData: 'complete', DatabaseAdded: 'inprogress' }
-    //             })
-    //             break;
-    //         case 'Database added':
-    //             setT2mProgress((prev) => {
-    //                 return { ...prev, DatabaseAdded: 'complete', DatabaseImported: 'inprogress' }
-    //             })
-    //             break;
-    //         case 'Database imported':
-    //             setT2mProgress((prev) => {
-    //                 return { ...prev, DatabaseImported: 'complete', CardsCreated: 'inprogress' }
-    //             })
-    //             break;
-    //         case 'Cards created':
-    //             setT2mProgress((prev) => {
-    //                 return { ...prev, CardsCreated: 'complete', MigrationCompleted: 'inprogress' }
-    //             })
-    //             break;
-    //         case 'Migration completed':
-    //             setT2mProgress((prev) => {
-    //                 return { ...prev, MigrationCompleted: 'complete' }
-    //             })
-    //             break;
-    //         // case 'failed':
-    //         default:
-    //             setT2mProgress((prev) => {
-    //                 const updatedProgress = {};
-    //                 for (const key in prev) {
-    //                     if (prev[key] === 'inprogress') {
-    //                         updatedProgress[key] = 'failed';
-    //                     } else {
-    //                         updatedProgress[key] = prev[key];
-    //                     }
-    //                 }
-    //                 return updatedProgress;
-    //             });
-    //             break;
-    //     }
-    // }
-
     const [options, setOptions] = useState({
         'Tableau to Power BI': true,
         'Tableau to Metabase': false,
@@ -157,16 +65,6 @@ const NewJobPage = () => {
     const mappedOptions = Object.entries(options).map(([key, value]) => {
         return { name: key, value: value };
     });
-
-    // const toolChecker = (data) => {
-
-    //     if (tool === 'Tableau to Power BI') {
-    //         t2pProgressTracker(data);
-    //     } else {
-    //         t2mProgressTracker(data);
-    //     }
-
-    // }
 
     useEffect(() => {
         const initializeSocket = async () => {
@@ -423,8 +321,9 @@ const NewJobPage = () => {
                     </div>
 
                     {page === 'toolSelect' && <ToolSelectionArea setToolAccessPopup={setToolAccessPopup} tool={tool} setTool={setTool} createDate={createDate} setPage={setPage} />}
-                    {page === 'toolDetails' && <ToolDetailsArea tool={tool} createDate={createDate} taskName={taskName} setTaskName={setTaskName} file={file} setFile={setFile} setPage={setPage} T2Pmigration={T2Pmigration} T2MBmigration={T2MBmigration} />}
-                    {page === 'loading' && <LoadingPage createDate={createDate} incomingStatus={incomingStatus} status={status} setPage={setPage} />}
+                    {page === 'toolDetails' && <ToolDetailsArea IBM2GlueMigration={IBM2GlueMigration} glueDatabases={glueDatabases} setGlueDatabases={setGlueDatabases} tool={tool} createDate={createDate} taskName={taskName} setTaskName={setTaskName} file={file} setFile={setFile} setPage={setPage} T2Pmigration={T2Pmigration} T2MBmigration={T2MBmigration} />}
+                    {page === 'loading' && <LoadingPage createDate={createDate} incomingStatus={incomingStatus} status={status} />}
+                    {page === 'connection' && <ConnectionPage setPage={setPage}/>}
 
                 </div>
 

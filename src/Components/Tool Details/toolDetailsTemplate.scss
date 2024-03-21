@@ -14,4 +14,27 @@
         width: 100%;
         font-family: Styles.$outfit;
     }
+
+    .d2gHeader{
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        .heading{
+            width: fit-content;
+        }
+
+        div{
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+
+            p{
+                margin-left: 0.4rem;
+                text-decoration: underline;
+                color: Styles.$actionBlue;
+                font-weight: 700;
+            }
+        }
+    }
 }
