@@ -1,0 +1,42 @@
+@use '../../Styles';
+
+.connectionFormTemplate {
+    width: 95%;
+
+    .heading{
+        margin: 2rem 0;
+        font-size: 1.5rem;
+        font-weight: 700;
+        width: 100%;
+        font-family: Styles.$outfit;
+    }
+    
+    .connectionFormContainer {
+        display: flex;
+        justify-content: space-between;
+        flex-wrap: wrap;
+
+        .inputTab {
+            margin-bottom: 17px;
+        }
+
+        .label {
+            font-size: 0.875rem;
+            font-weight: 400;
+            opacity: 0.54;
+            font-family: Styles.$poppins;
+        }
+
+        .nameInput {
+            width: 34.625rem;
+            height: 3.8125rem;
+            border-radius: 0.625rem;
+            margin-top: 0.5rem;
+            box-sizing: border-box;
+            border: 1px solid #D4D3D6;
+            outline: none;
+            font-size: 1rem;
+            padding-left: 1rem;
+        }
+    }
+}
