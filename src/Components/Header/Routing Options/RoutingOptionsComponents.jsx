@@ -5,7 +5,9 @@ import { Link } from 'react-router-dom'
 
 const RoutingOptionsComponents = () => {
 
-    let loc = window.location.pathname.split("/")[1]
+    let loc = window.location.hash.split('/')[1]
+
+    console.log(loc);
 
     return(
     <div className='routingButtonContainer'>

@@ -4,7 +4,6 @@ import RoutingOptionsComponents from './Routing Options/RoutingOptionsComponents
 import notificationIcon from '../../Assets/Images/Notification.svg'
 import { useNavigate } from 'react-router-dom'
 import profilePic from '../../Assets/Images/Profile Pic.png'
-// import logoPic from '../../Assets/Images/Divum logo.png'
 import dropDownImg from '../../Assets/Images/Dropdown.svg'
 import ProfileIcon from '../../Assets/Images/Profile Dropdown.svg'
 import logoutIcon from '../../Assets/Images/Logout Dropdown.svg'
@@ -26,7 +25,6 @@ const Header = () => {
 
 
                 <div className='logo'>
-                    {/* <img src={logoPic} alt="logo" /> */}
                     <p>EternaSync</p>
                 </div>
 

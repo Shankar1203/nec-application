@@ -71,9 +71,9 @@ const ToolDetailsForm = ({ tool, invalidName, glueDatabases, setGlueDatabases, s
         <div className='databaseOption'>
 
           <div>
-            <p className='label'>Source Database</p>
+            <p className='label'>Source Connection</p>
             <div className='nameInput' onClick={() => setDatabaseDropdown(prev => ({ ...prev, dropdown1: !prev.dropdown1 }))}>
-              <p>{!glueDatabases.database1 ? 'Database 1' : glueDatabases.database1}</p>
+              <p>{!glueDatabases.database1 ? 'Connection 1' : glueDatabases.database1}</p>
               <img src={dropdown} alt="drop down" style={{ transform: databaseDropdown.dropdown1 ? "rotate(180deg)" : "rotate(0deg)" }} />
             </div>
             <div className='dropdown' style={{ maxHeight: !databaseDropdown.dropdown1 && "0rem" }}>
@@ -85,9 +85,9 @@ const ToolDetailsForm = ({ tool, invalidName, glueDatabases, setGlueDatabases, s
           </div>
 
           <div>
-            <p className='label'>Target Database</p>
+            <p className='label'>Target Connection</p>
             <div className='nameInput' onClick={() => setDatabaseDropdown(prev => ({ ...prev, dropdown2: !prev.dropdown2 }))}>
-              <p>{!glueDatabases.database2 ? 'Database 2' : glueDatabases.database2}</p>
+              <p>{!glueDatabases.database2 ? 'Connection 2' : glueDatabases.database2}</p>
               <img src={dropdown} alt="drop down" style={{ transform: databaseDropdown.dropdown2 ? "rotate(180deg)" : "rotate(0deg)" }} />
             </div>
             <div className='dropdown' style={{ maxHeight: !databaseDropdown.dropdown2 && "0rem" }}>

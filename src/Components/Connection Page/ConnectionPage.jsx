@@ -7,12 +7,12 @@ import './connectionPage.scss'
 const ConnectionPage = ({ setPage }) => {
 
     const [connection, setConnection] = useState({
+        connectionName: '',
+        server: '',
         username: '',
         password: '',
-        sourceDbName: '',
-        sourceDbTableName: '',
-        destinationDbName: '',
-        destinationDbTableName: '',
+        dbName: '',
+        dbTableName: '',
         host: '',
         port: ''
     })
@@ -24,7 +24,7 @@ const ConnectionPage = ({ setPage }) => {
 
             <div className='actionButtons' style={{ justifyContent: "right" }}>
                 <div onClick={() => setPage('toolDetails')}><Button content="Previous Step" type="outline" /></div>
-                {(connection.username && connection.password && connection.sourceDbName && connection.sourceDbTableName && connection.destinationDbName && connection.destinationDbTableName && connection.host && connection.port) ? <div><Button content="Add Connection" type="fill" /></div> :
+                {(connection.username && connection.password && connection.dbName && connection.dbTableName && connection.connectionName && connection.server && connection.host && connection.port) ? <div><Button content="Add Connection" type="fill" /></div> :
 
                     <div className='disabledBtn'>
                         <p>Add Connection</p>

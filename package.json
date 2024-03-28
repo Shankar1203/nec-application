@@ -2,8 +2,7 @@
   "name": "nec-application",
   "version": "1.0.0",
   "private": true,
-  "main": "public/electron.js",
-  "homepage": "./",
+  "main": "main.js",
   "description": "EternaStnc desktop application",
   "productName": "EternaSync",
   "dependencies": {
@@ -49,7 +48,11 @@
     ]
   },
   "build": {
-    "appId": "com.example.myapp"
+    "appId": "com.example.myapp",
+    "files": [
+      "main.js",
+      "build/**/*"
+    ]
   },
   "devDependencies": {
     "electron": "^29.1.2",

@@ -1,5 +1,5 @@
 import React from 'react'
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { HashRouter, Routes, Route } from "react-router-dom";
 import LoginPage from './Pages/Login Page/LoginPage';
 import NewJobPage from './Pages/New Job Page/NewJobPage';
 import HomePage from './Pages/Home Page/HomePage'
@@ -9,9 +9,8 @@ import QaPage from './Pages/QA Page/QaPage';
 import ProfilePage from './Pages/Profile Page/ProfilePage';
 
 const Router = () => {
-
     return (
-        <BrowserRouter>
+        <HashRouter>
             <Routes>
                 <Route path="/" element={<LoginPage/>} />
                 <Route path="/home" element={<HomePage/>} />
@@ -19,9 +18,9 @@ const Router = () => {
                 <Route path="/qa" element={<QaPage/>}/>
                 <Route path="/aboutus" element={<AboutUs/>}/>
                 <Route path="/profile" element={<ProfilePage/>}/>
-                <Route element={<NotFoundPage/>} />
+                <Route path='*' element={<NotFoundPage/>} />
             </Routes>
-        </BrowserRouter>
+        </HashRouter>
     )
 }
 
