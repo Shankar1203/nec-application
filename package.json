@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "private": true,
   "main": "main.js",
+  "homepage": "./",
   "description": "EternaStnc desktop application",
   "productName": "EternaSync",
   "dependencies": {
@@ -48,11 +49,17 @@
     ]
   },
   "build": {
+    "extends": null,
     "appId": "com.example.myapp",
     "files": [
       "main.js",
-      "build/**/*"
-    ]
+      "build/**/*",
+      "public/**/*"
+    ],
+    "linux": {
+      "icon":"public/icon.png",
+      "target": "snap"
+    }
   },
   "devDependencies": {
     "electron": "^29.1.2",
