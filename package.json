@@ -59,6 +59,10 @@
     "linux": {
       "icon":"public/icon.png",
       "target": "snap"
+    },
+    "win": {
+      "icon":"public/icon.png",
+      "target":"nsis"
     }
   },
   "devDependencies": {
