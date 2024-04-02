@@ -25,7 +25,6 @@ const ToolSelectionArea = ({ setToolAccessPopup, tool, setTool, createDate, setP
                 }
             }).then((res) => {
                 if (res?.status === 200) {
-                    console.log(res.data);
                     setAvailableTools(res?.data?.content);
                 }
             }).catch(error => {
@@ -61,7 +60,7 @@ const ToolSelectionArea = ({ setToolAccessPopup, tool, setTool, createDate, setP
                 <p>Started creating on: {createDate}</p>
                 <div>
                     <Link to='/home'><Button content="Close" type="outline" /></Link>
-                    { (availableTools.includes('admin')) || ((tool === 'Tableau to Power BI' && availableTools.includes('t2p')) || (tool === 'Tableau to Metabase' && availableTools.includes('t2m')) || (tool === 'IBM Datastage to Informatica Powercenter' && availableTools.includes('d2p')) || (tool === 'IBM Datastage to Glue' && availableTools.includes('d2g'))) ?
+                    { (availableTools.includes('admin')) || ((tool === 'Tableau to Power BI' && availableTools.includes('t2p')) || (tool === 'Tableau Prep to Power BI' && availableTools.includes('tf2p')) || (tool === 'Tableau to Metabase' && availableTools.includes('t2m')) || (tool === 'IBM Datastage to Informatica Powercenter' && availableTools.includes('d2p')) || (tool === 'IBM Datastage to Glue' && availableTools.includes('d2g'))) ?
                         <div onClick={() => setPage('toolDetails')}><Button content="Next" type="fill" /></div> :
                         <div className='restrictBtn'>
                             <p>Next</p>

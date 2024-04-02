@@ -50,7 +50,7 @@ const ToolSelectionTemplate = ({ availableTools, loading, setToolAccessPopup, to
                   <p>{item.description}</p>
                 </div>
 
-                { (availableTools.includes('admin')) || !((item.name === 'Tableau to Power BI' && (availableTools.includes('t2p'))) || (item.name === 'Tableau to Metabase' && availableTools.includes('t2m')) || (item.name === 'IBM Datastage to Informatica Powercenter' && availableTools.includes('d2p')) || (item.name === 'IBM Datastage to Glue' && availableTools.includes('d2g'))) &&
+                { (availableTools.includes('admin')) || !((item.name === 'Tableau to Power BI' && (availableTools.includes('t2p'))) || (item.name === 'Tableau Prep to Power BI' && availableTools.includes('tf2p')) || (item.name === 'Tableau to Metabase' && availableTools.includes('t2m')) || (item.name === 'IBM Datastage to Informatica Powercenter' && availableTools.includes('d2p')) || (item.name === 'IBM Datastage to Glue' && availableTools.includes('d2g'))) &&
                   <div className='deniedAccess'>
                     <p>No access permission</p>
                     <img src={lock} alt="locked" />

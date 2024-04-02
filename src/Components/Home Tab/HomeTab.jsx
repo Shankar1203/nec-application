@@ -43,7 +43,6 @@ const HomeTab = ({ setDeletePopup, setToBeDeleted, isDeleted }) => {
                         'Authorization': `Bearer ${sessionStorage.getItem('token')}`
                     }
                 }).then((res) => {
-                    console.log(res);
                     if (res?.status === 200) {
                         setMaxPages(res.data.content.totalPages)
 
@@ -64,7 +63,6 @@ const HomeTab = ({ setDeletePopup, setToBeDeleted, isDeleted }) => {
                 });
 
             } catch (error) {
-                console.log("fhgav")
                 console.log(error);
                 navigate('/');
             } 

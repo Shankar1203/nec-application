@@ -7,8 +7,6 @@ const RoutingOptionsComponents = () => {
 
     let loc = window.location.hash.split('/')[1]
 
-    console.log(loc);
-
     return(
     <div className='routingButtonContainer'>
         {routingOptions.map((item, index) => {

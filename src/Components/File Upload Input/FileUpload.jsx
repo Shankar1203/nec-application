@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react'
 import uploadIcon from '../../Assets/Images/Upload.svg'
 import twbxIcon from '../../Assets/Images/twbx.webp'
+import tflxIcon from '../../Assets/Images/tflx.png'
 import xmlIcon from '../../Assets/Images/xlm.svg'
 import deleteIcon from '../../Assets/Images/Delete.svg'
 import invalidType from '../../Assets/Images/Invalid File.svg'
@@ -19,6 +20,15 @@ const FileUpload = ({ tool, file, setFile }) => {
 
         if (tool === 'Tableau to Power BI' || tool === 'Tableau to Metabase') {
             if ((selectedFile.name.split('.')[1]).toLowerCase() === 'twbx') {
+                setFile(selectedFile);
+                setInvalidFileType(false);
+            }
+            else {
+                setFile(null);
+                setInvalidFileType(true);
+            }
+        } else if(tool === 'Tableau Prep to Power BI'){
+            if ((selectedFile.name.split('.')[1]).toLowerCase() === 'tflx') {
                 setFile(selectedFile);
                 setInvalidFileType(false);
             }
@@ -56,7 +66,7 @@ const FileUpload = ({ tool, file, setFile }) => {
     const handleFileChange = (event) => {
         const selectedFile = event.target.files[0];
         event.target.value = null;
-        const validFile = ((tool === 'Tableau to Power BI' || tool === 'Tableau to Metabase') && selectedFile.name.split('.')[1]) === 'twbx' ? true : ((tool === 'IBM Datastage to Informatica Powercenter' || tool === 'IBM Datastage to Glue') && selectedFile.name.split('.')[1]) === 'xml' ? true : false;
+        const validFile = ((tool === 'Tableau to Power BI' || tool === 'Tableau to Metabase') && selectedFile.name.split('.')[1]) === 'twbx' ? true : ((tool === 'IBM Datastage to Informatica Powercenter' || tool === 'IBM Datastage to Glue') && selectedFile.name.split('.')[1]) === 'xml' ? true : (tool==='Tableau Prep to Power BI' && selectedFile.name.split('.')[1] === 'tflx') ? true : false;
 
         if (validFile) {
             setFile(selectedFile);
@@ -76,12 +86,12 @@ const FileUpload = ({ tool, file, setFile }) => {
 
     return (
         <div>
-            <p className='label'>Upload {(tool === 'Tableau to Power BI' || tool === 'Tableau to Metabase') ? 'TWBX' : 'XML'} File</p>
+            <p className='label'>Upload {(tool === 'Tableau to Power BI' || tool === 'Tableau to Metabase') ? 'TWBX' : tool==='Tableau Prep to Power BI' ? 'TFLX' : 'XML'} File</p>
             <div className='uploadInput' onDragOver={handleDragOver} onDrop={handleDrop} style={{ border: invalidFileType && '2px dashed #C9262A' }}>
                 {file ?
                     <div className='filePresent'>
                         <div>
-                            <img src={(tool === 'Tableau to Power BI' || tool === 'Tableau to Metabase') ? twbxIcon : xmlIcon} alt="File icon" className='fileIcon' />
+                            <img src={(tool === 'Tableau to Power BI' || tool === 'Tableau to Metabase') ? twbxIcon : tool==='Tableau Prep to Power BI' ? tflxIcon : xmlIcon} alt="File icon" className='fileIcon' />
                             <div className='fileData'>
                                 <p className='fileName'>{file.name}</p>
                                 <p className='fileSize'>{formatFileSize(file.size)}</p>
@@ -100,13 +110,13 @@ const FileUpload = ({ tool, file, setFile }) => {
                     ref={fileInputRef}
                     style={{ display: 'none' }}
                     onChange={handleFileChange}
-                    accept={(tool === 'Tableau to Power BI' || tool === 'Tableau to Metabase') ? ".twbx" : ".xml"}
+                    accept={(tool === 'Tableau to Power BI' || tool === 'Tableau to Metabase') ? ".twbx" : tool === 'Tableau Prep to Power BI' ? ".tflx" : ".xml"}
                 />
             </div>
 
             {invalidFileType && <div className='invalidTypePopup'>
                 <img src={invalidType} alt="invalid file type" />
-                <p className='errorText'>File format could not be recognised. Please try uploading with <span>{(tool === 'Tableau to Power BI' || tool === 'Tableau to Metabase') ? 'TWBX' : 'XML'} File.</span></p>
+                <p className='errorText'>File format could not be recognised. Please try uploading with <span>{(tool === 'Tableau to Power BI' || tool === 'Tableau to Metabase') ? 'TWBX' : tool === 'Tableau Prep to Power BI' ? 'TFLX' : 'XML'} File.</span></p>
             </div>}
 
         </div>
