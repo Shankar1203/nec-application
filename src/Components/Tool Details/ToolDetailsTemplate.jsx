@@ -3,7 +3,7 @@ import './toolDetailsTemplate.scss'
 import ToolDetailsForm from './ToolDetailsForm'
 import add from '../../Assets/Images/Add Connection.svg'
 
-const ToolDetailsTemplate = ({ setPage, tool, glueDatabases, setGlueDatabases, invalidName, setInvalidName, taskName, setTaskName, file, setFile }) => {
+const ToolDetailsTemplate = ({ uploadFileFormat, setUploadFileFormat, setPage, tool, glueDatabases, setGlueDatabases, invalidName, setInvalidName, taskName, setTaskName, file, setFile }) => {
   return (
     <div className='toolDetailsTemplate'>
       {tool === 'IBM Datastage to Glue' ?
@@ -16,7 +16,7 @@ const ToolDetailsTemplate = ({ setPage, tool, glueDatabases, setGlueDatabases, i
         </div> :
         <p className='heading'>{tool}</p>
       }
-      <ToolDetailsForm tool={tool} glueDatabases={glueDatabases} setGlueDatabases={setGlueDatabases} invalidName={invalidName} setInvalidName={setInvalidName} taskName={taskName} setTaskName={setTaskName} file={file} setFile={setFile} />
+      <ToolDetailsForm tool={tool} uploadFileFormat={uploadFileFormat} setUploadFileFormat={setUploadFileFormat} glueDatabases={glueDatabases} setGlueDatabases={setGlueDatabases} invalidName={invalidName} setInvalidName={setInvalidName} taskName={taskName} setTaskName={setTaskName} file={file} setFile={setFile} />
     </div>
   )
 }

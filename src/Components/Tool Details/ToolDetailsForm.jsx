@@ -6,7 +6,7 @@ import refreshTokenHandling from '../../Api/refreshToken'
 import { useNavigate } from 'react-router-dom'
 import dropdown from '../../Assets/Images/Dropdown.svg'
 
-const ToolDetailsForm = ({ tool, invalidName, glueDatabases, setGlueDatabases, setInvalidName, taskName, setTaskName, file, setFile }) => {
+const ToolDetailsForm = ({ tool, uploadFileFormat, setUploadFileFormat, invalidName, glueDatabases, setGlueDatabases, setInvalidName, taskName, setTaskName, file, setFile }) => {
 
   const navigate = useNavigate();
 
@@ -61,7 +61,7 @@ const ToolDetailsForm = ({ tool, invalidName, glueDatabases, setGlueDatabases, s
           {invalidName && <p className='errorText'>Task name already exists</p>}
         </div>
 
-        <FileUpload tool={tool} file={file} setFile={setFile} />
+        <FileUpload uploadFileFormat={uploadFileFormat} setUploadFileFormat={setUploadFileFormat} tool={tool} file={file} setFile={setFile} />
 
       </div>
 
