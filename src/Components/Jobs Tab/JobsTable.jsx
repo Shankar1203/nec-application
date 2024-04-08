@@ -37,7 +37,7 @@ const JobsTable = ({ tasks, setDeletePopup, setToBeDeleted }) => {
           'taskname': toBeDownloaded,
         },
         headers: {
-          'Authorization': `Bearer ${sessionStorage.getItem("token")}`,
+          'Authorization': `Bearer ${localStorage.getItem("token")}`,
         },
         responseType: 'blob',
       }).then((res) => {

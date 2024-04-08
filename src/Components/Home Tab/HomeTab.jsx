@@ -40,7 +40,7 @@ const HomeTab = ({ setDeletePopup, setToBeDeleted, isDeleted }) => {
             try {
                 await httpClient.get(`/user/api/v4/taskRecords/${page}`, {
                     headers: {
-                        'Authorization': `Bearer ${sessionStorage.getItem('token')}`
+                        'Authorization': `Bearer ${localStorage.getItem('token')}`
                     }
                 }).then((res) => {
                     if (res?.status === 200) {

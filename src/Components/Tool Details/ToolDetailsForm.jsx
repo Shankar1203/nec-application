@@ -35,7 +35,7 @@ const ToolDetailsForm = ({ tool, uploadFileFormat, setUploadFileFormat, invalidN
           'taskName': event.target.value,
         },
         headers: {
-          'Authorization': `Bearer ${sessionStorage.getItem('token')}`,
+          'Authorization': `Bearer ${localStorage.getItem('token')}`,
         }
       }).then((res) => {
         if (res?.status === 200) {

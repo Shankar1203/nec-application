@@ -5,10 +5,6 @@ import loginImg from '../../Assets/Images/Login.png'
 
 const LoginPage = ({ setUserName }) => {
 
-  useEffect(() => {
-    sessionStorage.clear();
-  }, [])
-
   const [page, setPage] = useState("login");
 
   return (

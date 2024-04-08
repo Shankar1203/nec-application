@@ -21,7 +21,7 @@ const ToolSelectionArea = ({ setToolAccessPopup, tool, setTool, createDate, setP
         try {
             await httpClient.get('/user/api/v4/toolAccess', {
                 headers: {
-                    'Authorization': `Bearer ${sessionStorage.getItem('token')}`
+                    'Authorization': `Bearer ${localStorage.getItem('token')}`
                 }
             }).then((res) => {
                 if (res?.status === 200) {

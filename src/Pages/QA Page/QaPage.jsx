@@ -23,7 +23,7 @@ const QaPage = () => {
 
     await httpClient.get('/user/api/v4/home', {
       headers: {
-        'Authorization': `Bearer ${sessionStorage.getItem('token')}`
+        'Authorization': `Bearer ${localStorage.getItem('token')}`
       }
     }).then((res) => {
       if (res.status === 200) {
@@ -60,7 +60,7 @@ const QaPage = () => {
 
       await httpClient.post('/user/api/v4/qa', formData, {
         headers: {
-          'Authorization': `Bearer ${sessionStorage.getItem('token')}`,
+          'Authorization': `Bearer ${localStorage.getItem('token')}`,
         },
         responseType: 'arraybuffer',
       }).then((res) => {

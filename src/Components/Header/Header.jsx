@@ -15,7 +15,7 @@ const Header = () => {
     const [dropDown, setDropDown] = useState(false);
 
     const logOut = () => {
-        sessionStorage.clear()
+        localStorage.clear()
         navigate('/');
     }
 
@@ -40,7 +40,7 @@ const Header = () => {
 
                     <div className='profile' onClick={() => setDropDown(prev => !prev)}>
                         <div><img src={profilePic} alt="profile picture" className='profilePic' /></div>
-                        <p>{sessionStorage.getItem('username')}</p>
+                        <p>{localStorage.getItem('username')}</p>
                         <img src={dropDownImg} alt="Dropdown Icon" className='dropDownIcon' style={{ transform: dropDown ? "rotate(180deg)" : "rotate(0deg)" }} />
                     </div>
 

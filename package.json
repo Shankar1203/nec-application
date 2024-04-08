@@ -4,7 +4,7 @@
   "private": true,
   "main": "main.js",
   "homepage": "./",
-  "description": "EternaStnc desktop application",
+  "description": "EternaSync desktop application",
   "productName": "EternaSync",
   "dependencies": {
     "@testing-library/jest-dom": "^5.17.0",
@@ -50,24 +50,23 @@
   },
   "build": {
     "extends": null,
-    "appId": "com.example.myapp",
+    "appId": "EternaSync",
     "files": [
       "main.js",
       "build/**/*",
       "public/**/*"
     ],
     "linux": {
-      "icon":"public/icon.png",
+      "icon": "public/icon.png",
       "target": "snap"
     },
     "win": {
-      "icon":"public/icon.png",
-      "target":"nsis"
+      "icon": "public/icon.png",
+      "target": "nsis"
     }
   },
   "devDependencies": {
     "electron": "^29.1.2",
-    "electron-builder": "^24.13.3",
-    "electron-is-dev": "^3.0.1"
+    "electron-builder": "^24.13.3"
   }
 }

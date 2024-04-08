@@ -22,7 +22,7 @@ const JobsList = () => {
 
     await httpClient.get('/user/api/v4/home', {
       headers: {
-        'Authorization': `Bearer ${sessionStorage.getItem('token')}`
+        'Authorization': `Bearer ${localStorage.getItem('token')}`
       }
     }).then((res) => {
       if (res.status === 200) {
@@ -55,7 +55,7 @@ const JobsList = () => {
           'taskName': toBeDeleted
         },
         headers: {
-          'Authorization': `Bearer ${sessionStorage.getItem('token')}`
+          'Authorization': `Bearer ${localStorage.getItem('token')}`
         }
       }).then((res) => {
         if (res?.status === 200) {

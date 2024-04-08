@@ -26,7 +26,7 @@ const ToolSelectionArea = ({ tool, TF2Pmigration, glueDatabases, IBM2GlueMigrati
                 <p>Started creating on: {createDate}</p>
                 <div>
                     <div onClick={() => setPage('toolSelect')}><Button content="Previous Step" type="outline" /></div>
-                    {(tool === 'IBM Datastage to Glue' ? ((glueDatabases.database1 && glueDatabases.database2 && (glueDatabases.database1 !== glueDatabases.database2)) && (taskName && file && !invalidName)) : (taskName && file && !invalidName)) ? <div onClick={(tool === 'Tableau to Power BI' && uploadFileFormat==='twbx') ? T2Pmigration : (tool === 'Tableau to Power BI' && uploadFileFormat==='tflx') ? TF2Pmigration : tool === 'Tableau to Metabase' ? T2MBmigration : tool === 'IBM Datastage to Glue' && IBM2GlueMigration}><Button content="Run" type="fill" /></div> :
+                    {(tool === 'IBM Datastage to Glue' ? ((glueDatabases.database1 && glueDatabases.database2 && (glueDatabases.database1 !== glueDatabases.database2)) && (taskName && file && !invalidName)) : (taskName && file && !invalidName)) ? <div onClick={tool === 'Tableau to Power BI' ? T2Pmigration : tool === 'Tableau to Metabase' ? T2MBmigration : tool === 'IBM Datastage to Glue' && IBM2GlueMigration}><Button content="Run" type="fill" /></div> :
 
                         <div className='disabledBtn'>                                                                                                        
                             <p>Run</p>

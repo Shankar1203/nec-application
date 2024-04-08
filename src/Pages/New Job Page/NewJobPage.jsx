@@ -72,7 +72,7 @@ const NewJobPage = () => {
             const newSocket = io(`${ip}/task`);
 
             newSocket.on('connect', () => {
-                newSocket.emit('join', { username: sessionStorage.getItem('username') });
+                newSocket.emit('join', { username: localStorage.getItem('username') });
                 newSocket.on('message', (data) => {
                     console.log(data);
                     progressTracker(data);
@@ -106,7 +106,7 @@ const NewJobPage = () => {
 
         await httpClient.get('/user/api/v4/home', {
             headers: {
-                'Authorization': `Bearer ${sessionStorage.getItem('token')}`
+                'Authorization': `Bearer ${localStorage.getItem('token')}`
             }
         }).then((res) => {
             if (res?.status === 200) {
@@ -153,7 +153,7 @@ const NewJobPage = () => {
 
             await httpClient.post('/T2P/api/v4/T2P', formData, {
                 headers: {
-                    'Authorization': `Bearer ${sessionStorage.getItem('token')}`,
+                    'Authorization': `Bearer ${localStorage.getItem('token')}`,
                 },
             }).then((res) => {
                 if (res?.status === 200) {
@@ -231,7 +231,7 @@ const NewJobPage = () => {
 
             await httpClient.post('/T2M/api/v4/T2M', formData, {
                 headers: {
-                    'Authorization': `Bearer ${sessionStorage.getItem('token')}`,
+                    'Authorization': `Bearer ${localStorage.getItem('token')}`,
                 },
             }).then((res) => {
                 if (res.status === 200) {
@@ -248,89 +248,6 @@ const NewJobPage = () => {
                             return updatedProgress;
                         });
                     }, 50);
-                    
-                    setStatus('success');
-
-                    Notification.requestPermission().then((result) => {
-                        new Notification('Migration Completed successfully', {
-                            body: `${taskName} has been successfully migrated.`
-                        })
-                    });
-                }
-            }).catch((error) => {
-                if (error?.response?.status === 401) {
-                    refreshtoken(e, 't2mb');
-                } else {
-                    setTimeout(() => {
-                        setIncomingStatus((prev) => {
-                            const updatedProgress = {};
-                            for (const key in prev) {
-                                if (prev[key] === 'inprogress') {
-                                    updatedProgress[key] = 'failed';
-                                } else {
-                                    updatedProgress[key] = prev[key];
-                                }
-                            }
-                            return updatedProgress;
-                        });
-                    }, 50);
-                    setStatus('fail');
-                    console.log(error);
-                }
-            })
-
-        } catch (error) {
-            setTimeout(() => {
-                setIncomingStatus((prev) => {
-                    const updatedProgress = {};
-                    for (const key in prev) {
-                        if (prev[key] === 'inprogress') {
-                            updatedProgress[key] = 'failed';
-                        } else {
-                            updatedProgress[key] = prev[key];
-                        }
-                    }
-                    return updatedProgress;
-                });
-            }, 50);
-            setStatus('fail');
-            console.error('Error:', error);
-        }
-
-    }
-
-    const TF2Pmigration = async (e) => {
-        e.preventDefault();
-
-        setStatus('loading');
-        setPage('loading');
-
-        try {
-            const formData = new FormData();
-            formData.append('taskName', taskName);
-            formData.append('file', file);
-
-            await httpClient.post('/TF2P/api/v4/TF2P', formData, {
-                headers: {
-                    'Authorization': `Bearer ${sessionStorage.getItem('token')}`,
-                },
-            }).then((res) => {
-                if (res.status === 200) {
-
-                    setTimeout(()=>{
-                        setIncomingStatus((prev) => {
-                            const updatedProgress = {};
-                            for (const key in prev) {
-                                if (prev[key] === 'inprogress') {
-                                    updatedProgress[key] = 'complete';
-                                } else {
-                                    updatedProgress[key] = prev[key];
-                                }
-                            }
-                            return updatedProgress;
-                        });
-                    },50)
-
                     
                     setStatus('success');
 
@@ -417,7 +334,7 @@ const NewJobPage = () => {
                     </div>
 
                     {page === 'toolSelect' && <ToolSelectionArea setToolAccessPopup={setToolAccessPopup} tool={tool} setTool={setTool} createDate={createDate} setPage={setPage} />}
-                    {page === 'toolDetails' && <ToolDetailsArea TF2Pmigration={TF2Pmigration} IBM2GlueMigration={IBM2GlueMigration} glueDatabases={glueDatabases} setGlueDatabases={setGlueDatabases} tool={tool} createDate={createDate} taskName={taskName} setTaskName={setTaskName} file={file} setFile={setFile} setPage={setPage} T2Pmigration={T2Pmigration} T2MBmigration={T2MBmigration} />}
+                    {page === 'toolDetails' && <ToolDetailsArea IBM2GlueMigration={IBM2GlueMigration} glueDatabases={glueDatabases} setGlueDatabases={setGlueDatabases} tool={tool} createDate={createDate} taskName={taskName} setTaskName={setTaskName} file={file} setFile={setFile} setPage={setPage} T2Pmigration={T2Pmigration} T2MBmigration={T2MBmigration} />}
                     {page === 'loading' && <LoadingPage createDate={createDate} incomingStatus={incomingStatus} status={status} />}
                     {page === 'connection' && <ConnectionPage setPage={setPage}/>}
 

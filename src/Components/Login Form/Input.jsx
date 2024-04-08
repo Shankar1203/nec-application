@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { FaRegEye } from "react-icons/fa";
 import { FaRegEyeSlash } from "react-icons/fa";
 import httpClient from '../../httpClient';
@@ -9,6 +9,18 @@ import invalid from '../../Assets/Images/Invalid File.svg'
 const Input = ({ invalidEmailType, setInvalidEmailType, invalidRegisterCredentials, setInvalidRegisterCredentials, setErrorType, setInvalidCredentials, cleanUp, credentials, page, setPage, email, setEmail, password, setPassword, username, setUsername, confirmPassword, setConfirmPassword, loginkey, setLoginkey }) => {
 
     const navigate = useNavigate();
+
+    useEffect(()=>{
+        const storedToken = localStorage.getItem('token');
+        const storedRefreshToken = localStorage.getItem('refresh_token');
+        autoLogin(storedToken, storedRefreshToken)
+    },[])
+
+    const autoLogin = (storedToken, storedRefreshToken) => {
+        if(storedToken && storedRefreshToken){
+            navigate('/home')
+        }
+    }
 
     const checkPassword = (password) => {
         setPassword(password);
@@ -70,9 +82,9 @@ const Input = ({ invalidEmailType, setInvalidEmailType, invalidRegisterCredentia
                         loginkey, password
                     }, { "Content/Type": "application/json" }
                     ).then((res) => {
-                        sessionStorage.setItem('refresh_token', res?.data?.content?.token?.refresh_token);
-                        sessionStorage.setItem('token', res?.data?.content?.token?.token);
-                        sessionStorage.setItem('username', res?.data?.content?.username);
+                        localStorage.setItem('refresh_token', res?.data?.content?.token?.refresh_token);
+                        localStorage.setItem('token', res?.data?.content?.token?.token);
+                        localStorage.setItem('username', res?.data?.content?.username);
                         navigate('/home')
                     }).catch((error) => {
                         setInvalidCredentials(true);
@@ -104,10 +116,10 @@ const Input = ({ invalidEmailType, setInvalidEmailType, invalidRegisterCredentia
                                         'loginkey': username, password
                                     }, { "Content/Type": "application/json" }
                                     ).then((res) => {
-                                        sessionStorage.setItem('refresh_token', res?.data?.content?.token?.refresh_token);
-                                        sessionStorage.setItem('token', res?.data?.content?.token?.token);
-                                        sessionStorage.setItem('username', res?.data?.content?.username);
-                                        sessionStorage.setItem('role', res?.data?.content?.role);
+                                        localStorage.setItem('refresh_token', res?.data?.content?.token?.refresh_token);
+                                        localStorage.setItem('token', res?.data?.content?.token?.token);
+                                        localStorage.setItem('username', res?.data?.content?.username);
+                                        localStorage.setItem('role', res?.data?.content?.role);
                                         navigate('/home')
                                     }).catch((error) => {
                                         console.log(error);

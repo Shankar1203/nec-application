@@ -32,7 +32,7 @@ const ProfilePage = () => {
     setSplash(true);
     await httpClient.get('/user/api/v4/home', {
       headers: {
-        'Authorization': `Bearer ${sessionStorage.getItem('token')}`
+        'Authorization': `Bearer ${localStorage.getItem('token')}`
       }
     }).then((res) => {
       if (res?.status === 200) {
@@ -49,7 +49,7 @@ const ProfilePage = () => {
     try {
       await httpClient.get('user/api/v4/userdetails', {
         headers: {
-          'Authorization': `Bearer ${sessionStorage.getItem('token')}`,
+          'Authorization': `Bearer ${localStorage.getItem('token')}`,
         }
       }).then((res) => {
         if (res.status === 200) {

@@ -8,12 +8,12 @@ async function refreshTokenHandling() {
 
     await httpClient.get(`${ip}/auth/api/v4/refreshToken`, {
         headers: {
-            'Authorization': `Bearer ${sessionStorage.getItem('refresh_token')}`
+            'Authorization': `Bearer ${localStorage.getItem('refresh_token')}`
         }
     }).then((res) => {
         if (res.status === 200) {
-            sessionStorage.setItem('token', res.data.content.token);
-            sessionStorage.setItem('refresh_token', res.data.content.refresh_token);
+            localStorage.setItem('token', res.data.content.token);
+            localStorage.setItem('refresh_token', res.data.content.refresh_token);
         }else{
             status=res.status
         }
