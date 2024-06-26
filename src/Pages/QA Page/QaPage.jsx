@@ -58,7 +58,7 @@ const QaPage = () => {
       formData.append('image1', tableauInput);
       formData.append('image2', powerBiInput);
 
-      await httpClient.post('/user/api/v4/qa', formData, {
+      await httpClient.post('/T2P/api/v4/qa', formData, {
         headers: {
           'Authorization': `Bearer ${localStorage.getItem('token')}`,
         },
